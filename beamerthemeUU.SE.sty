@@ -1,0 +1,79 @@
+% Unofficial LaTeX beamer class for Uppsala University (IT department)
+% Created by Chris Sakalis <chrissakalis@gmail.com>
+% Based on the UU.SE theme by Andre Hilsendeger <Andre.Hilsendeger.6365@student.uu.se>
+% Also based on a theme by Ricardo Alves <ricardo.alves@it.uu.se>
+
+\ProvidesPackage{beamerthemeUU.SE}
+  [2015/11/09 v2.0 beamer 'UU.SE' theme]
+
+\RequirePackage{pgf}
+\pgfdeclareimage[width=0.50\paperwidth]{seal-title}{uu_seal_monoclipped}
+\pgfdeclareimage[width=1cm]{seal}{uu_seal}
+
+\mode<presentation>
+
+% Override this to use with other departments
+\newcommand{\uuurl}{it.uu.se}
+
+\usefonttheme{default}
+\usecolortheme{UU.SE}
+\useinnertheme{default}
+\useoutertheme{default}
+
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{date}{size=\large}
+\setbeamerfont{example text}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries,size=\LARGE,}
+\setbeamerfont{framesubtitle}{series=\mdseries,size=\large}
+\setbeamerfont{section}{series=\bfseries}
+\setbeamerfont{title}{series=\bfseries}
+
+% Add the seal in the background on the first slide only
+\setbeamertemplate{background}{
+	\ifnum\thepage=1 \relax
+	\begin{picture}(0,0)(0,235)\pgfuseimage{seal-title}\end{picture} \else \fi
+}
+
+% Disable the navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Set up the title page
+\setbeamertemplate{title page}
+{
+	\vskip0pt plus 1filll
+	\begin{flushright}
+		{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle \\ \vskip-10pt \rule{0.6\paperwidth}{0.5mm} \vskip10pt}
+		{\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor \\ \vskip5pt}
+		{\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute \\ \vskip5pt}
+		{\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate \\}
+	\end{flushright}
+	\vskip0pt plus 1filll
+}
+
+% Set up the headers and footers
+\setbeamertemplate{headline}
+{
+	% Add the grey bar at the top
+	\begin{beamercolorbox}[wd=\paperwidth,ht=0.015\paperheight]{footer bar}
+		\vskip1cm
+	\end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}
+{
+	% Add the grey bar at the bottom
+	\begin{beamercolorbox}[wd=\paperwidth,ht=0.1\paperheight]{footer bar}
+		\vskip1cm
+	\end{beamercolorbox}
+	% Add the UU seal
+	\vskip -0.97cm
+	\pgfuseimage{seal}
+	% Add the text
+	\begin{flushright}
+		\vskip -0.99cm
+		{\usebeamerfont{title}\usebeamercolor[fg]{footer text}\small{Uppsala University ~\textbar~ \uuurl\hspace*{.2cm}}}
+	\end{flushright}
+}
+
+\mode
+<all>
